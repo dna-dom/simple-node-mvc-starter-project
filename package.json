@@ -38,7 +38,7 @@
       "commands": {
          "rollup": "rollup {{file}} --file build/2-dev/web-app/{{filename}} --name {{nameCamelCase}} --format iife --globals dna-dom:globalThis,fetch-json:globalThis,pretty-print-json:globalThis",
          "lessc": "lessc {{file}} build/2-dev/web-app/{{basename}}.css",
-         "csso": "csso {{file}} --output build/3-min/web-app/{{filename}}",
+         "lightningcss": "lightningcss {{file}} --output-file build/3-min/web-app/{{filename}} --minify --bundle",
          "uglifyjs": "uglifyjs {{file}} --output build/3-min/web-app/{{filename}}"
       }
    },
@@ -65,7 +65,7 @@
       "build3-min": [
          "copy-folder    build/2-dev/web-app --ext=.html build/3-min/web-app",
          "copy-folder    build/2-dev/web-app/assets      build/3-min/web-app/assets",
-         "recursive-exec build/2-dev/web-app --ext=.css  {{command:csso}}",
+         "recursive-exec build/2-dev/web-app --ext=.css  {{command:lightningcss}}",
          "recursive-exec build/2-dev/web-app --ext=.js   {{command:uglifyjs}}"
       ],
       "build4-rev": [
@@ -95,9 +95,9 @@
    "dependencies": {
       "chalk": "~5.6",
       "cors": "~2.8",
-      "dotenv": "~17.3",
+      "dotenv": "~17.4",
       "express": "~5.2",
-      "fetch-json": "~3.3",
+      "fetch-json": "~3.5",
       "http-terminator": "~3.2",
       "lokijs": "~1.5",
       "pretty-print-json": "~3.0"
@@ -109,21 +109,21 @@
       "@types/express": "~5.0",
       "@types/gapi.auth2": "~0.0",
       "@types/lokijs": "~1.5",
-      "@types/node": "~25.5",
+      "@types/node": "~25.9",
       "add-dist-header": "~1.6",
       "assert-deep-strict-equal": "~1.2",
       "browser-sync": "~3.0",
       "chokidar-cli": "~3.0",
       "copy-file-util": "~1.3",
       "copy-folder-util": "~1.2",
-      "csso-cli": "~4.0",
       "dna-dom": "~3.3",
-      "eslint": "~10.1",
+      "eslint": "~10.4",
       "img-src-placeholder": "~1.2",
       "jshint": "~2.13",
       "less": "~4.6",
+      "lightningcss-cli": "~1.32",
       "mocha": "~11.7",
-      "puppeteer": "~24.40",
+      "puppeteer": "~25.0",
       "puppeteer-browser-ready": "~1.4",
       "recursive-exec": "~1.1",
       "replacer-util": "~1.6",
@@ -132,7 +132,7 @@
       "rollup": "~4.60",
       "run-scripts-util": "~1.3",
       "typescript": "~6.0",
-      "typescript-eslint": "~8.58",
+      "typescript-eslint": "~8.59",
       "uglify-js": "~3.19",
       "w3c-html-validator": "~2.2",
       "web-ignition": "~2.5"
