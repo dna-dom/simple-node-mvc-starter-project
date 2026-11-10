@@ -10,34 +10,35 @@ import { appUi }     from './ui.js';
 
 const appAction = {
    getBooks(): void {
-      const path = 'books';
-      appUi.logApiCall('GET', path);
-      fetchJson.get(appLookup.apiServer! + path).then(appUi.handleBooks);
+      const url = `${appLookup.apiServer}/books`;
+      appUi.logApiCall('GET', url);
+      fetchJson.get(url).then(appUi.handleBooks);
       },
-   getBook(button: HTMLElement): void {
-      const id =   button.dataset.book!;
-      const path = 'books/' + id;
-      appUi.logApiCall('GET', path);
-      fetchJson.get(appLookup.apiServer! + path).then(appUi.handleBooks);
+   getBook(button: HTMLElement) {
+      const id =  button.dataset.book!;
+      const url = `${appLookup.apiServer}/books/${id}`;
+      appUi.logApiCall('GET', url);
+      return fetchJson.get(url).then(appUi.handleBooks);
       },
 
    queryBooks(button: HTMLElement): void {
-      const ids =  button.dataset.books!.split(',').map(id => Number(id));  //ex: [3001, 3003]
-      const path = 'books';
-      appUi.logApiCall('QUERY', path);
-      fetchJson.query(appLookup.apiServer! + path, { ids }).then(appUi.handleBooks);
+      const ids =   button.dataset.books!.split(',').map(id => Number(id));  //ex: [3001, 3003]
+      const query = { ids };
+      const url =   `${appLookup.apiServer}/books`;
+      appUi.logApiCall('QUERY', url);
+      fetchJson.query(url, query).then(appUi.handleBooks);
       },
 
    deleteBook(button: HTMLElement): void {
-      const id =   button.dataset.book!;
-      const path = 'books/' + id;
-      appUi.logApiCall('DELETE', path);
-      fetchJson.delete(appLookup.apiServer! + path).then(appUi.handleBooks);
+      const id =  button.dataset.book!;
+      const url = `${appLookup.apiServer}/books/${id}`;
+      appUi.logApiCall('DELETE', url);
+      fetchJson.delete(url).then(appUi.handleBooks);
       },
    bogus(): void {
-      const path = 'bogus';
-      appUi.logApiCall('GET', path);
-      fetchJson.get(appLookup.apiServer! + path).then(appUi.handleBooks);
+      const url = `${appLookup.apiServer}/bogus`;
+      appUi.logApiCall('GET', url);
+      fetchJson.get(url).then(appUi.handleBooks);
       },
    };
 

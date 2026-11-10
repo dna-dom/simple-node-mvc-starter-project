@@ -5,8 +5,7 @@
 import { prettyPrintJson } from 'pretty-print-json';
 
 // Modules
-import { appLookup } from './lookup.js';
-import { JsonData }  from '../../../types/global.js';
+import { JsonData } from '../../../types/global.js';
 
 const appUi = {
    // <main>
@@ -16,17 +15,21 @@ const appUi = {
    //    </p>
    //    <pre><output></output></pre>
    // </main>
-   logApiCall(method: string, path: string): void {
-      const citeElem = globalThis.document.querySelector('main cite')!;
-      citeElem.querySelector('code')!.textContent =   method;
-      citeElem.querySelector('output')!.textContent = appLookup.apiServer! + path;
+
+   logApiCall(method: string, url: string): void {
+      const citeVerbElem =       globalThis.document.querySelector('main >p >cite >code')!;
+      const citeUrlElem =        globalThis.document.querySelector('main >p >cite >output')!;
+      citeVerbElem.textContent = method;
+      citeUrlElem.textContent =  url;
       },
+
    handleBooks(data: JsonData): Element {
-      const outputElem = globalThis.document.querySelector('main >pre >output')!;
+      const outputElem =     globalThis.document.querySelector('main >pre >output')!;
       outputElem.innerHTML = prettyPrintJson.toHtml(data);
       dna.ui.fadeIn(outputElem, { duration: 1000, reset: true });
       return outputElem;
       },
+
    };
 
 export { appUi };

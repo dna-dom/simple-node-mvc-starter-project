@@ -3,7 +3,7 @@
 
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
-import { fetchJson } from 'fetch-json';
+import { fetchJson }             from 'fetch-json';
 
 // Setup
 fetchJson.enableLogger();
@@ -19,7 +19,8 @@ describe('The "/books" REST endpoint', () => {
          const expected = { array: true };
          assertDeepStrictEqual(actual, expected, done);
          };
-      fetchJson.get(baseUrl + 'books').then(handleData);
+      const url = `${baseUrl}/books`;
+      fetchJson.get(url).then(handleData);
       });
 
    });

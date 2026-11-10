@@ -6,9 +6,9 @@ export type AppConfig = typeof appConfig;
 export type ApiServer = AppConfig['apiServers'][number];
 
 const appConfig = {
-   restBase: 'http://localhost:2121/api/v1/',
+   restBase: 'http://localhost:2121/api/v1',
    apiServers: [
-      { website: 'localhost', api: 'http://localhost:2121/api/v1/' },
+      { website: 'localhost', api: 'http://localhost:2121/api/v1' },
       ],
    };
 

@@ -3,7 +3,7 @@
 
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
-import { fetchJson } from 'fetch-json';
+import { fetchJson }             from 'fetch-json';
 
 // Setup
 fetchJson.enableLogger();
@@ -20,11 +20,13 @@ describe('The "/books/3002" REST endpoint', () => {
          const expected = { id: 3002, title: 'Styling CSS3', author: 'Abby', retrieved: today };
          assertDeepStrictEqual(actual, expected, done);
          };
-      fetchJson.get(baseUrl + 'books/3002').then(handleData);
+      const url = `${baseUrl}/books/3002`;
+      fetchJson.get(url).then(handleData);
       });
 
    it('returns the "Styling CSS3" book in an async spec', async () => {
-      const data =     await fetchJson.get(baseUrl + 'books/3002');
+      const url =      `${baseUrl}/books/3002`;
+      const data =     await fetchJson.get(url);
       const actual =   data;
       const expected = { id: 3002, title: 'Styling CSS3', author: 'Abby', retrieved: today };
       assertDeepStrictEqual(actual, expected);
