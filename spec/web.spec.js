@@ -2,9 +2,9 @@
 // Mocha Specification Suite
 
 // Imports
-import puppeteer from 'puppeteer';
+import puppeteer                 from 'puppeteer';
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
-import { browserReady } from 'puppeteer-browser-ready';
+import { browserReady }          from 'puppeteer-browser-ready';
 
 // Setup
 const webRoot = process.env.webRoot ?? 'dist/web-app';
@@ -18,7 +18,7 @@ const loadWebPage = () => puppeteer.launch()
 const closeWebPage = () => browserReady.close(web);
 
 ////////////////////////////////////////////////////////////////////////////////
-describe.skip('The web page', () => {  //TODO: Investigate loadWebPage timeout --> await page.goto(url)
+describe('The web page', () => {
    before(loadWebPage);
    after(closeWebPage);
 
@@ -51,7 +51,7 @@ describe.skip('The web page', () => {  //TODO: Investigate loadWebPage timeout -
    });
 
 ////////////////////////////////////////////////////////////////////////////////
-describe.skip('The document content', () => {  //TODO: Investigate loadWebPage timeout --> await page.goto(url)
+describe('The document content', () => {
    before(loadWebPage);
    after(closeWebPage);
 
