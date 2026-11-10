@@ -6,11 +6,11 @@ import express, { RequestHandler } from 'express';
 
 // Modules
 import { bookController } from './book-controller.js';
-import { log }            from '../modules/system/log.js';
+import { logEvent }       from '../modules/system/log-event.js';
 
 // Utilities
 const logRestRequest: RequestHandler = (request, response, next) => {
-   log.info('api-server', 'request', request.ip, request.hostname, request.method, request.path);
+   logEvent.info('api-server', 'request', request.ip, request.hostname, request.method, request.path);
    next();
    };
 
