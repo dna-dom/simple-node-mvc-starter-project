@@ -20,6 +20,14 @@ const appAction = {
       appUi.logApiCall('GET', path);
       fetchJson.get(appLookup.apiServer! + path).then(appUi.handleBooks);
       },
+
+   queryBooks(button: HTMLElement): void {
+      const ids =  button.dataset.books!.split(',').map(id => Number(id));  //ex: [3001, 3003]
+      const path = 'books';
+      appUi.logApiCall('QUERY', path);
+      fetchJson.query(appLookup.apiServer! + path, { ids }).then(appUi.handleBooks);
+      },
+
    deleteBook(button: HTMLElement): void {
       const id =   button.dataset.book!;
       const path = 'books/' + id;

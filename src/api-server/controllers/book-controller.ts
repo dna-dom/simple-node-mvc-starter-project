@@ -9,16 +9,20 @@ import { database, Document } from '../modules/db/database.js';
 import { restError }          from '../modules/system/rest-error.js';
 
 // Types
-export type DocumentBook = {
+export type Book = {
    id:     number,
    title:  string,
    author: string,
    };
+export type BooksQuery = {
+   ids: number[],
+   };
+export type BookResource = Book & { retrieved: string };
 
 // Model
 const model = {
    book(data: Document) {
-      return {
+      return <BookResource>{
          id:        data.id,
          title:     data.title,
          author:    data.author,
@@ -29,10 +33,12 @@ const model = {
 
 // Controller
 const bookController = {
+
    save(request: express.Request, response: express.Response): void {
       const resource = restError.notImplemented();
       response.json(resource);
       },
+
    read(request: express.Request, response: express.Response): void {
       const id =       request.params.id!;
       const db =       database.getDb();
@@ -40,11 +46,22 @@ const bookController = {
       const resource = data ? model.book(data) : restError.notFound();
       response.json(resource);
       },
-   list(request: express.Request, response: express.Response): void {
+
+   search(request: express.Request, response: express.Response): void {
+      const ids =      (<BooksQuery>request.body).ids;
       const db =       database.getDb();
-      const resource = db.collection('books').find().map(model.book);
+      const data =     db.collection('books').find({ id: { $in: ids } });
+      const resource = data.map(model.book);
       response.json(resource);
       },
+
+   list(request: express.Request, response: express.Response): void {
+      const db =       database.getDb();
+      const data =     db.collection('books').find();
+      const resource = data.map(model.book);
+      response.json(resource);
+      },
+
    delete(request: express.Request, response: express.Response): void {
       const id =       request.params.id!;
       const db =       database.getDb();
@@ -52,6 +69,7 @@ const bookController = {
       const resource = data ? restError.notImplemented() : restError.notFound();
       response.json(resource);
       },
+
    };
 
 export { bookController };

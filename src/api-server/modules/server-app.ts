@@ -39,8 +39,9 @@ const serverApp = {
             log.warn('api-server', 'invalid-route', request.url);
          response.json(restError.notFound('No route.'));
          };
-      const apiApp = express();
-      apiApp.use(cors());
+      const apiApp =      express();
+      const corsOptions = { methods: ['*'] };  //override default to allow QUERY method
+      apiApp.use(cors(corsOptions));
       apiApp.use(express.json());
       apiApp.use('/api/v1', routeTable.createRoutes());
       apiApp.all('*splat', handleInvalidRoute);

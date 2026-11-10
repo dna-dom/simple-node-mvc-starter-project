@@ -20,6 +20,7 @@ const routeTable = {
       routes.use(logRestRequest);
       routes.use(express.json());
       routes.get(   '/books',     bookController.list);
+      routes.query!('/books',     bookController.search);  //TODO: https://expressjs.com/en/5x/api/router/#routermethod
       routes.post(  '/books',     bookController.save);
       routes.get(   '/books/:id', bookController.read);
       routes.delete('/books/:id', bookController.delete);
