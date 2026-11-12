@@ -22,9 +22,17 @@ const bookController = {
         const resource = data ? model.book(data) : restError.notFound();
         response.json(resource);
     },
+    search(request, response) {
+        const ids = request.body.ids;
+        const db = database.getDb();
+        const data = db.collection('books').find({ id: { $in: ids } });
+        const resource = data.map(model.book);
+        response.json(resource);
+    },
     list(request, response) {
         const db = database.getDb();
-        const resource = db.collection('books').find().map(model.book);
+        const data = db.collection('books').find();
+        const resource = data.map(model.book);
         response.json(resource);
     },
     delete(request, response) {

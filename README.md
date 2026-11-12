@@ -7,7 +7,7 @@ _Simple Node.js MVC starter project_
 
 **STATUS:** Early development (not even pre-alpha)
 
-![screenshot](screenshot.png)
+![screenshot](screenshot.webp)
 
 Try it out:
 ```terminal

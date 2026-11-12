@@ -123,7 +123,7 @@
       "less": "~4.9",
       "lightningcss-cli": "~1.33",
       "mocha": "~12.0",
-      "puppeteer": "~25.16",
+      "puppeteer": "~25.17",
       "puppeteer-browser-ready": "~1.4",
       "recursive-exec": "~1.1",
       "replacer-util": "~1.6",

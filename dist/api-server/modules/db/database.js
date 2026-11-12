@@ -1,7 +1,7 @@
 import loki from 'lokijs';
 import { config } from '../../config.js';
 import { dataset } from './dataset.js';
-import { log } from '../system/log.js';
+import { logEvent } from '../system/log-event.js';
 const collection = (name) => {
     if (!database.state.db)
         throw new Error('[simple] Database not connected.');
@@ -31,13 +31,13 @@ const database = {
             throw new Error('[simple] Database already connected.');
         database.state.client = new loki(config.db.name);
         dataset.forEach(database.addCollection);
-        log.info('db', 'connect', true);
+        logEvent.info('db', 'connect', true);
         return new Promise(resolve => resolve());
     },
     close() {
         database.state.client = null;
         database.state.collectionMap = {};
-        log.info('db', 'close', true);
+        logEvent.info('db', 'close', true);
         return new Promise(resolve => resolve());
     },
 };

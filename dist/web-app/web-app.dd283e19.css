@@ -1,2 +1,2 @@
 /*! simple-node-mvc-starter-project v0.0.0 ~~ https://github.com/dna-dom/simple-node-mvc-starter-project ~~ MIT License */
-main>p button{margin-right:10px}
+main>nav{flex-wrap:wrap;gap:20px;margin-bottom:30px;display:flex}main>p button{margin-right:10px}

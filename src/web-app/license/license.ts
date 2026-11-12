@@ -5,7 +5,7 @@
 import { dna } from 'dna-dom';
 
 // Modules
-import { appLookup } from '../+page/modules/lookup.js';
+import { appLookup }      from '../+page/modules/lookup.js';
 import { licenseDetails } from './+page/modules/details.js';
 
 const license = {
